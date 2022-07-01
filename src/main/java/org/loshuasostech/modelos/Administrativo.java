@@ -1,7 +1,10 @@
 package org.loshuasostech.modelos;
 
-import java.time.LocalDate;
-
+/**
+ * @author Los Huasos TECH
+ * @version 0.1
+ * @since 01-07-2022
+ */
 public class Administrativo extends Usuario {
 
   private String area;
@@ -22,16 +25,39 @@ public class Administrativo extends Usuario {
     return area;
   }
 
+  /**
+   * Define el Area correspondiente al Administrativo
+   *
+   * @param area Es una cadena entre 5 y 20 caracteres.
+   * @throws IllegalArgumentException si no cumple con la condicion.
+   */
   public void setArea(String area) {
-    this.area = area;
+    if (area.length() < 5 || area.length() > 20) {
+      throw new IllegalArgumentException
+              ("El area debe contener al menos 5 caracteres y no mas de 20");
+    } else {
+      this.area = area;
+    }
   }
 
   public String getExpPrevia() {
     return expPrevia;
   }
 
+  /**
+   * Define la experiencia previa del Administrativo
+   *
+   * @param expPrevia Es una cadena no mayor a 100 caracteres.
+   * @throws IllegalArgumentException si no cumple con la condicion.
+   */
   public void setExpPrevia(String expPrevia) {
-    this.expPrevia = expPrevia;
+    if (expPrevia.length() > 100) {
+      throw new IllegalArgumentException
+              ("Debe describir su experiencia previa en no mas de 100 caracteres");
+    } else {
+      this.expPrevia = expPrevia;
+    }
+
   }
 
   @Override
