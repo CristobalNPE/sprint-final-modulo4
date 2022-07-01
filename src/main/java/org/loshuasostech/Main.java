@@ -1,7 +1,9 @@
 package org.loshuasostech;
 
+import org.loshuasostech.modelos.Capacitacion;
 import org.loshuasostech.modelos.Cliente;
 import org.loshuasostech.modelos.Usuario;
+
 import java.util.Scanner;
 
 public class Main {
@@ -10,15 +12,15 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
 
     Cliente c = new Cliente();
-
+    Capacitacion capa = new Capacitacion();
 
 
     while (true) {
-      System.out.print("Ingrese su fecha de nacimiento en formato dd//mm//yy: ");
+      System.out.print("Ingrese hora capa HH:MM : ");
 
-      String fecha = scanner.nextLine();
+      String hora = scanner.nextLine();
       try {
-        usuario.setFechaNacimiento(fecha);
+        capa.setHora(hora);
         break;
       } catch (IllegalArgumentException e) {
         System.out.println("Error: " + e.getMessage());
@@ -26,7 +28,7 @@ public class Main {
 
 
     }
-    System.out.println(usuario.getFechaNacimiento());
+    System.out.println(capa.getHora());
 
 //    try {
 //      usuario.setNombre(nombre);
