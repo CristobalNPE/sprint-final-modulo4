@@ -1,5 +1,7 @@
 package org.loshuasostech.modelos;
 
+import org.loshuasostech.helpers.ValidadorHoraFecha;
+
 /**
  * @author Los Huasos TECH
  * @version 0.1
@@ -51,9 +53,7 @@ public class Profesional extends Usuario {
    * @throws IllegalArgumentException si la fecha  no cumple la condicion
    */
   public void setFechaIngreso(String fechaIngreso) {
-    String formatoFecha =
-            "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$";
-    if (!fechaIngreso.matches(formatoFecha)) {
+    if (!ValidadorHoraFecha.fechaFormatoCorrecto(fechaIngreso)) {
       throw new IllegalArgumentException
               ("Debe ingresar la fecha en formato DD/MM/AAAA");
     } else {

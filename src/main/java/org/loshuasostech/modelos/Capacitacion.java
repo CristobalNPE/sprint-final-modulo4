@@ -1,5 +1,7 @@
 package org.loshuasostech.modelos;
 
+import org.loshuasostech.helpers.ValidadorHoraFecha;
+
 import java.util.List;
 
 /**
@@ -79,9 +81,7 @@ public class Capacitacion {
    * @throws IllegalArgumentException si no cumple con la condicion.
    */
   public void setHora(String hora) {
-    String formatoHora =
-            "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
-    if (!hora.matches(formatoHora)) {
+    if (!ValidadorHoraFecha.horaFormatoCorecto(hora)) {
       throw new IllegalArgumentException
               ("Debe ingresar la hora en formato HH:MM");
     } else {
