@@ -119,7 +119,7 @@ public class Capacitacion {
    * @throws IllegalArgumentException si no cumple con la condicion.
    */
   public void setDuracion(String duracion) {
-    if (duracion.length() > 100) {
+    if (duracion.length() > 70) {
       throw new IllegalArgumentException
               ("Debe describir la duracion en no mas de 70 caracteres");
     } else {
@@ -156,5 +156,11 @@ public class Capacitacion {
             "\nLugar: " + this.lugar +
             "\nDuracion: " + this.duracion +
             "\nCantidad Asistentes: " + this.cantidadAsistentes);
+  }
+
+  public void mostrarDetalle() {
+    System.out.printf
+            ("%nLa capacitacion sera en %s a las %s del dia %s, y durara %s minutos",
+                    this.lugar, this.hora, this.dia, this.duracion);
   }
 }

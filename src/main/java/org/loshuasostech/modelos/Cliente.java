@@ -189,7 +189,7 @@ public class Cliente extends Usuario {
     return ("\nApellidos: " + this.apellidos +
             "\nTelefono: " + this.telefono +
             "\nAFP: " + this.afp +
-            "\nSistema de salud: " + this.sistemaSalud +
+            "\nSistema de salud: " + this.obtenerSistemaSalud() +
             "\nDireccion: " + this.direccion +
             "\nComuna: " + this.comuna +
             "\nEdad: " + this.edad);
@@ -197,6 +197,25 @@ public class Cliente extends Usuario {
 
   public void analizarUsuario() {
     super.analizarUsuario();
-    System.out.println(this);
+    System.out.println
+            ("Direccion: " + this.direccion + "\nComuna: " + this.comuna);
+  }
+
+  /**
+   * Define una cadena que concatena el nombre y apellido del cliente
+   *
+   * @return La cadena concatenada.
+   */
+  public String obtenerNombre() {
+    return this.getNombre() + " " + this.apellidos;
+  }
+
+  /**
+   * Define un cadena asociado al valor de Sistema de salud
+   *
+   * @return Una cadena representativa del sistema de salud segun corresponda.
+   */
+  public String obtenerSistemaSalud() {
+    return this.sistemaSalud == 1 ? "Fonasa" : "Isapre";
   }
 }

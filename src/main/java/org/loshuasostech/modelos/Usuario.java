@@ -2,6 +2,9 @@ package org.loshuasostech.modelos;
 
 import org.loshuasostech.helpers.ValidadorHoraFecha;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 /**
  * @author Los Huasos TECH
  * @version 0.1
@@ -93,6 +96,29 @@ public class Usuario implements Asesoria {
 
   @Override
   public void analizarUsuario() {
-    System.out.println("Nombre: " + this.nombre);
+    System.out.println("Nombre: " + this.nombre + "\nRUN: " + this.run);
+  }
+
+  /**
+   * Calcula la edad del usuario a partir de su fecha de nacimiento.
+   *
+   * @return Un valor entero que representa la edad.
+   */
+  private int calcularEdad() {
+    String[] partes = this.fechaNacimiento.split("/");
+    LocalDate nacimiento =
+            LocalDate.of(Integer.parseInt(partes[2]),
+                    Integer.parseInt(partes[1]), Integer.parseInt(partes[0]));
+
+    Period period = Period.between(nacimiento, LocalDate.now());
+
+    return period.getYears();
+  }
+
+  /**
+   * Muestra por pantalla la edad del usuario segun formato.
+   */
+  public void mostrarEdad() {
+    System.out.printf("%nEl usuario tiene %d anios de edad", this.calcularEdad());
   }
 }
