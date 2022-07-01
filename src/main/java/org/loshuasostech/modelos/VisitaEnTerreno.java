@@ -2,6 +2,8 @@ package org.loshuasostech.modelos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VisitaEnTerreno {
   private int id;
@@ -10,6 +12,7 @@ public class VisitaEnTerreno {
   private LocalTime hora;
   private String lugar;
   private String comentarios;
+  private List<Revision> revisiones;
 
   public VisitaEnTerreno(int id, String rut, LocalDate dia, LocalTime hora,
                          String lugar, String comentarios) {
@@ -20,6 +23,8 @@ public class VisitaEnTerreno {
     this.hora = hora;
     this.lugar = lugar;
     this.comentarios = comentarios;
+
+    this.revisiones = new ArrayList<>();
   }
 
   public VisitaEnTerreno() {

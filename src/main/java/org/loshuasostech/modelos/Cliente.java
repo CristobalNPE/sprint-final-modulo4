@@ -1,6 +1,8 @@
 package org.loshuasostech.modelos;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente extends Usuario {
 
@@ -11,6 +13,10 @@ public class Cliente extends Usuario {
   private String direccion;
   private String comuna;
   private int edad;
+
+  private List<Capacitacion> capacitaciones;
+  private List<Accidente> accidentes;
+  private List<VisitaEnTerreno> visitas;
 
   public Cliente(String nombre, LocalDate fechaNacimiento, int run,
                  String apellidos, String telefono, String afp, int sistemaSalud,
@@ -24,6 +30,11 @@ public class Cliente extends Usuario {
     this.direccion = direccion;
     this.comuna = comuna;
     this.edad = edad;
+
+    this.capacitaciones = new ArrayList<>();
+    this.visitas = new ArrayList<>();
+    this.accidentes = new ArrayList<>();
+
   }
 
   public Cliente() {
