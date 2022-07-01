@@ -186,13 +186,17 @@ public class Cliente extends Usuario {
 
   @Override
   public String toString() {
-    return (super.toString() +
-            "\nApellidos: " + this.apellidos +
+    return ("\nApellidos: " + this.apellidos +
             "\nTelefono: " + this.telefono +
             "\nAFP: " + this.afp +
             "\nSistema de salud: " + this.sistemaSalud +
             "\nDireccion: " + this.direccion +
             "\nComuna: " + this.comuna +
             "\nEdad: " + this.edad);
+  }
+
+  public void analizarUsuario() {
+    super.analizarUsuario();
+    System.out.println(this);
   }
 }

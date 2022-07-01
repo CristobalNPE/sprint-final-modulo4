@@ -7,7 +7,7 @@ import org.loshuasostech.helpers.ValidadorHoraFecha;
  * @version 0.1
  * @since 01-07-2022
  */
-public class Usuario {
+public class Usuario implements Asesoria {
   private String nombre;
   private String fechaNacimiento;
   private int run;
@@ -89,5 +89,10 @@ public class Usuario {
     return ("Nombre: " + this.nombre +
             "\nFecha de nacimiento: " + this.fechaNacimiento +
             "\nRUN: " + this.run);
+  }
+
+  @Override
+  public void analizarUsuario() {
+    System.out.println("Nombre: " + this.nombre);
   }
 }
