@@ -18,6 +18,7 @@ public class Capacitacion {
   private String duracion;
   private int cantidadAsistentes;
 
+
   public Capacitacion(int id, String rutCliente, String dia, String hora,
                       String lugar, String duracion, int cantidadAsistentes) {
 

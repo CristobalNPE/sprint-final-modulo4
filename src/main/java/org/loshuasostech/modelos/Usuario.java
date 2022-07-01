@@ -11,9 +11,9 @@ import java.time.Period;
  * @since 01-07-2022
  */
 public class Usuario implements Asesoria {
-  private String nombre;
-  private String fechaNacimiento;
-  private int run;
+  protected String nombre;
+  protected String fechaNacimiento;
+  protected int run;
 
   public Usuario() {
 

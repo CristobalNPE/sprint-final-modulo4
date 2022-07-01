@@ -56,7 +56,7 @@ public class Cliente extends Usuario {
       throw new IllegalArgumentException
               ("Nombre debe contener al menos 5 caracteres y no mas de 30");
     } else {
-      this.setNombre(nombre);
+      this.nombre = nombre;
     }
 
   }
@@ -76,7 +76,7 @@ public class Cliente extends Usuario {
       throw new IllegalArgumentException
               ("Apellido debe contener al menos 5 caracteres y no mas de 30");
     } else {
-      this.setNombre(apellidos);
+      this.apellidos = apellidos;
     }
   }
 
@@ -101,7 +101,7 @@ public class Cliente extends Usuario {
   public void setAfp(String afp) {
     if (afp.length() < 4 || afp.length() > 30) {
       throw new IllegalArgumentException
-              ("AFP debe contener al menos 5 caracteres y no mas de 30");
+              ("AFP debe contener al menos 4 caracteres y no mas de 30");
     } else {
       this.afp = afp;
     }
