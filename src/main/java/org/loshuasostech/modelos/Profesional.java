@@ -1,14 +1,17 @@
 package org.loshuasostech.modelos;
 
-import java.time.LocalDate;
-
+/**
+ * @author Los Huasos TECH
+ * @version 0.1
+ * @since 01-07-2022
+ */
 public class Profesional extends Usuario {
 
   private String titulo;
-  private LocalDate fechaIngreso;
+  private String fechaIngreso;
 
-  public Profesional(String nombre, LocalDate fechaNacimiento, int run,
-                     String titulo, LocalDate fechaIngreso) {
+  public Profesional(String nombre, String fechaNacimiento, int run,
+                     String titulo, String fechaIngreso) {
 
     super(nombre, fechaNacimiento, run);
     this.titulo = titulo;
@@ -22,16 +25,40 @@ public class Profesional extends Usuario {
     return titulo;
   }
 
+  /**
+   * Define el titulo del Profesional.
+   *
+   * @param titulo Corresponde a una cadena entre 10 y 50 caracteres.
+   * @throws IllegalArgumentException si no cumple con la condicion.
+   */
   public void setTitulo(String titulo) {
-    this.titulo = titulo;
+    if (titulo.length() < 10 || titulo.length() > 50) {
+      throw new IllegalArgumentException
+              ("Titulo debe contener al menos 10 caracteres y no mas de 50");
+    } else {
+      this.titulo = titulo;
+    }
   }
 
-  public LocalDate getFechaIngreso() {
+  public String getFechaIngreso() {
     return fechaIngreso;
   }
 
-  public void setFechaIngreso(LocalDate fechaIngreso) {
-    this.fechaIngreso = fechaIngreso;
+  /**
+   * Define la fecha de ingreso del Profesional
+   *
+   * @param fechaIngreso corresponde a una fecha en formato DD/MM/AAAA
+   * @throws IllegalArgumentException si la fecha  no cumple la condicion
+   */
+  public void setFechaIngreso(String fechaIngreso) {
+    String formatoFecha =
+            "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$";
+    if (!fechaIngreso.matches(formatoFecha)) {
+      throw new IllegalArgumentException
+              ("Debe ingresar la fecha en formato DD/MM/AAAA");
+    } else {
+      this.fechaIngreso = fechaIngreso;
+    }
   }
 
   @Override
