@@ -17,6 +17,9 @@ public class TextUI {
     this.contenedor = contenedor;
   }
 
+  /**
+   * Inicia el programa y despliega el menu principal
+   */
   public void start() {
     while (true) {
       System.out.println("Ingrese una opcion");
@@ -95,7 +98,7 @@ public class TextUI {
       String rutAEliminar = validarDato("Indique el RUT");
       try {
         this.contenedor.eliminarUsuario(Integer.parseInt(rutAEliminar));
-        System.out.println("Usuario eliminado exitosamente!");
+        System.out.println("Usuario eliminado exitosamente!\n");
         break;
       } catch (NumberFormatException e) {
         System.out.println("Debe Ingresar un numero");

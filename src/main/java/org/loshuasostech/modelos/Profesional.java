@@ -63,13 +63,15 @@ public class Profesional extends Usuario {
 
   @Override
   public String toString() {
-    return ("\nTitulo: " + this.titulo +
+    return (super.toString() +
+            "\nTitulo: " + this.titulo +
             "\nFecha de ingreso: " + this.fechaIngreso);
   }
 
   @Override
   public void analizarUsuario() {
     super.analizarUsuario();
-    System.out.println(this);
+    System.out.println("\nTitulo: " + this.titulo);
+    System.out.println("\nFecha de ingreso: " + this.fechaIngreso);
   }
 }

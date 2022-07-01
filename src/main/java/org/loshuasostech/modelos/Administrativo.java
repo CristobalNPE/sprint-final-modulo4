@@ -62,12 +62,14 @@ public class Administrativo extends Usuario {
 
   @Override
   public String toString() {
-    return ("\nArea :" + this.area +
+    return (super.toString() +
+            "\nArea :" + this.area +
             "\nExperiencia Previa: " + this.expPrevia);
   }
 
   public void analizarUsuario() {
     super.analizarUsuario();
-    System.out.println(this);
+    System.out.println("\nArea :" + this.area);
+    System.out.println("\nExperiencia Previa :" + this.expPrevia);
   }
 }

@@ -186,7 +186,8 @@ public class Cliente extends Usuario {
 
   @Override
   public String toString() {
-    return ("\nApellidos: " + this.apellidos +
+    return (super.toString() +
+            "\nApellidos: " + this.apellidos +
             "\nTelefono: " + this.telefono +
             "\nAFP: " + this.afp +
             "\nSistema de salud: " + this.obtenerSistemaSalud() +

@@ -109,7 +109,7 @@ public class Contenedor {
       }
       System.out.println("---------------------------");
     }
-    if (tipo.equalsIgnoreCase("administrador")) {
+    if (tipo.equalsIgnoreCase("administrativo")) {
       for (Asesoria u : this.usuarios) {
         if (u instanceof Administrativo) {
           System.out.println("---------------------------");
@@ -134,13 +134,15 @@ public class Contenedor {
    */
   public void listarCapacitaciones() {
     for (Capacitacion c : this.capacitaciones) {
-      System.out.println("-----------------");
+      System.out.println("===========================");
       System.out.println("ID Capacitacion : " + c.getId());
+      System.out.println("===========================");
       System.out.println("Clientes: ");
       for (Asesoria usuario : this.usuarios) {
         Usuario u = (Usuario) usuario;
         if (u.getRun() == Integer.parseInt(c.getRutCliente())) {
           System.out.println(u);
+          System.out.println("--------------------");
         }
       }
     }
