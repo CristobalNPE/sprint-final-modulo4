@@ -38,8 +38,8 @@ public class Capacitacion {
     return id;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public void setId(String identificacion) throws NumberFormatException {
+    this.id = Integer.parseInt(identificacion);
   }
 
   public String getRutCliente() {
@@ -135,10 +135,12 @@ public class Capacitacion {
   /**
    * Define la cantidad de asistentes inscritos en la capacitacion.
    *
-   * @param cantidadAsistentes Es un entero menor a 1000
+   * @param cantidad Es un entero menor a 1000
    * @throws IllegalArgumentException si no cumple con la condicion.
    */
-  public void setCantidadAsistentes(int cantidadAsistentes) {
+  public void setCantidadAsistentes(String cantidad) throws NumberFormatException {
+    int cantidadAsistentes = Integer.parseInt(cantidad);
+
     if (cantidadAsistentes >= 1000) {
       throw new IllegalArgumentException
               ("Se permite un maximo de 999 asistentes");

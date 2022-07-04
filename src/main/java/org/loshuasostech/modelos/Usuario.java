@@ -74,10 +74,11 @@ public class Usuario implements Asesoria {
   /**
    * Define el RUN para el usuario
    *
-   * @param run corresponde a un numero menor a 99.999.999
+   * @param sRun corresponde a un numero menor a 99.999.999
    * @throws IllegalArgumentException si el numero no cumple la condicion.
    */
-  public void setRun(int run) {
+  public void setRun(String sRun) throws NumberFormatException {
+    int run = Integer.parseInt(sRun);
     if (run >= 99_999_999) {
       throw new IllegalArgumentException
               ("El RUN debe ser menor a 99.999.999");

@@ -137,7 +137,7 @@ public class Contenedor {
       System.out.println("===========================");
       System.out.println("ID Capacitacion : " + c.getId());
       System.out.println("===========================");
-      System.out.println("Clientes: ");
+      System.out.println("+++ Clientes: +++ ");
       for (Asesoria usuario : this.usuarios) {
         Usuario u = (Usuario) usuario;
         if (u.getRun() == Integer.parseInt(c.getRutCliente())) {

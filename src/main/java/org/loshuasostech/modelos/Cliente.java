@@ -58,7 +58,6 @@ public class Cliente extends Usuario {
     } else {
       this.nombre = nombre;
     }
-
   }
 
   public String getApellidos() {
@@ -114,13 +113,14 @@ public class Cliente extends Usuario {
   /**
    * Define el Sistema Salud a la cual pertenece el cliente.
    *
-   * @param sistemaSalud Corresponde a un entero que puede ser 1 o 2.
+   * @param sSalud Corresponde a un entero que puede ser 1 o 2.
    * @throws IllegalArgumentException si sistemaSalud no cumple con la condicion.
    */
-  public void setSistemaSalud(int sistemaSalud) {
+  public void setSistemaSalud(String sSalud) throws NumberFormatException {
+    int sistemaSalud = Integer.parseInt(sSalud); //
     if (sistemaSalud < 1 || sistemaSalud > 2) {
       throw new IllegalArgumentException
-              ("Debe ingresar 1 o 2 dependiendo de su Sistema de Salud");
+              ("Debe ingresar 1) FONASA o 2) ISAPRE");
     } else {
       this.sistemaSalud = sistemaSalud;
     }
@@ -172,10 +172,11 @@ public class Cliente extends Usuario {
   /**
    * Define la edad del cliente.
    *
-   * @param edad Corresponde a un entero entre 0-149
+   * @param age Corresponde a un entero entre 0-149
    * @throws IllegalArgumentException si no cumple con la condicion.
    */
-  public void setEdad(int edad) {
+  public void setEdad(String age) throws NumberFormatException {
+    int edad = Integer.parseInt(age);
     if (edad < 0 || edad >= 150) {
       throw new IllegalArgumentException
               ("La edad debe estar entre 0 y 149 anios");

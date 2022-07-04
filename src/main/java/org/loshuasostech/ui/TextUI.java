@@ -1,5 +1,6 @@
 package org.loshuasostech.ui;
 
+import org.loshuasostech.helpers.SetOperation;
 import org.loshuasostech.logic.Contenedor;
 import org.loshuasostech.modelos.Administrativo;
 import org.loshuasostech.modelos.Capacitacion;
@@ -22,20 +23,24 @@ public class TextUI {
    */
   public void start() {
     while (true) {
-      System.out.println("Ingrese una opcion");
-      System.out.println("1) Almacenar cliente");
-      System.out.println("2) Almacenar profesional");
-      System.out.println("3) Almacenar administrativo");
-      System.out.println("4) Almacenar capacitacion");
-      System.out.println("5) Eliminar usuario");
-      System.out.println("6) Listar usuarios");
-      System.out.println("7) Listar usuarios por tipo");
-      System.out.println("8) Listar capacitaciones");
-      System.out.println("0) Salir");
-
+      System.out.println("*********************************");
+      System.out.println("*      Ingrese una opcion:      *");
+      System.out.println("*********************************");
+      System.out.println("| 1) Almacenar cliente          |");
+      System.out.println("| 2) Almacenar profesional      |");
+      System.out.println("| 3) Almacenar administrativo   |");
+      System.out.println("| 4) Almacenar capacitacion     |");
+      System.out.println("| 5) Eliminar usuario           |");
+      System.out.println("| 6) Listar usuarios            |");
+      System.out.println("| 7) Listar usuarios por tipo   |");
+      System.out.println("| 8) Listar capacitaciones      |");
+      System.out.println("| 0) Salir                      |");
+      System.out.println("*********************************");
+      System.out.print(" > ");
       String input = scanner.nextLine();
 
       if (input.equals("0")) {
+        System.out.println("Adios!");
         break;
       } else if (input.matches("[1-8]")) {
         procesarInput(input);
@@ -76,9 +81,9 @@ public class TextUI {
 
   private void listarPorTipo() {
     System.out.println("Que tipo de Usuario desea listar:");
-    System.out.println("1) Cliente");
-    System.out.println("2) Profesional");
-    System.out.println("3) Administrativo");
+    System.out.println(" 1) Cliente");
+    System.out.println(" 2) Profesional");
+    System.out.println(" 3) Administrativo");
 
     String input = scanner.nextLine();
 
@@ -95,10 +100,13 @@ public class TextUI {
 
   private void eliminarUsuario() {
     while (true) {
-      String rutAEliminar = validarDato("Indique el RUT");
+      String rutAEliminar = validarNoVacio("Indique el RUT");
       try {
-        this.contenedor.eliminarUsuario(Integer.parseInt(rutAEliminar));
-        System.out.println("Usuario eliminado exitosamente!\n");
+        boolean borrado =
+                this.contenedor.eliminarUsuario(Integer.parseInt(rutAEliminar));
+        if (borrado) {
+          System.out.println("\nUsuario eliminado exitosamente!\n");
+        }
         break;
       } catch (NumberFormatException e) {
         System.out.println("Debe Ingresar un numero");
@@ -114,305 +122,81 @@ public class TextUI {
     Cliente cliente = new Cliente();
     System.out.println("Ingrese la informacion del nuevo cliente: ");
 
-    while (true) {
-      String nombre = validarDato("Nombre");
-      try {
-        cliente.setNombre(nombre);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String fechaNacimiento = validarDato("Fecha Nacimiento (DD/MM/AAAA)");
-      try {
-        cliente.setFechaNacimiento(fechaNacimiento);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String run = validarDato("RUN");
-      try {
-        cliente.setRun(Integer.parseInt(run));
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Debe Ingresar un numero");
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String apellido = validarDato("Apellido");
-      try {
-        cliente.setApellidos(apellido);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String telefeno = validarDato("Telefono");
-      try {
-        cliente.setTelefono(telefeno);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-    while (true) {
-      String afp = validarDato("AFP");
-      try {
-        cliente.setAfp(afp);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-    while (true) {
-      String ss = validarDato("Sistema de Salud");
-      try {
-        cliente.setSistemaSalud(Integer.parseInt(ss));
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Debe Ingresar un numero");
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String direccion = validarDato("Direccion");
-      try {
-        cliente.setDireccion(direccion);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String comuna = validarDato("Comuna");
-      try {
-        cliente.setComuna(comuna);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-    while (true) {
-      String edad = validarDato("Edad");
-      try {
-        cliente.setEdad(Integer.parseInt(edad));
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Debe Ingresar un numero");
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
+    validar(cliente::setNombre, "Nombre");
+    validar(cliente::setApellidos, "Apellido");
+    validar(cliente::setFechaNacimiento, "Fecha Nacimiento (DD/MM/AAAA)");
+    validar(cliente::setRun, "RUN");
+    validar(cliente::setTelefono, "Telefono");
+    validar(cliente::setAfp, "AFP");
+    validar(cliente::setSistemaSalud, "Sistema de salud [1|2]");
+    validar(cliente::setDireccion, "Direccion");
+    validar(cliente::setComuna, "Comuna");
+    validar(cliente::setEdad, "Edad");
 
     this.contenedor.almacenarCliente(cliente);
+    System.out.println("\nCliente almacenado con exito!\n");
+
   }
 
   private void almacenarProfesional() {
-    Profesional profesional = new Profesional();
+    Profesional pro = new Profesional();
     System.out.println("Ingrese la informacion del nuevo Profesional: ");
 
-    while (true) {
-      String nombre = validarDato("Nombre");
-      try {
-        profesional.setNombre(nombre);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
+    validar(pro::setNombre, "Nombre");
+    validar(pro::setFechaNacimiento, "Fecha Nacimiento (DD/MM/AAAA)");
+    validar(pro::setRun, "RUN");
+    validar(pro::setTitulo, "Titulo");
+    validar(pro::setFechaIngreso, "Fecha Ingreso (DD/MM/AAAA)");
 
-    while (true) {
-      String fechaNacimiento = validarDato("Fecha Nacimiento (DD/MM/AAAA)");
-      try {
-        profesional.setFechaNacimiento(fechaNacimiento);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String run = validarDato("RUN");
-      try {
-        profesional.setRun(Integer.parseInt(run));
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Debe Ingresar un numero");
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-    while (true) {
-      String titulo = validarDato("Titulo");
-      try {
-        profesional.setTitulo(titulo);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-    while (true) {
-      String fechaIngreso = validarDato("Fecha Ingreso (DD/MM/AAAA)");
-      try {
-        profesional.setFechaIngreso(fechaIngreso);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-    this.contenedor.almacenarProfesional(profesional);
+    this.contenedor.almacenarProfesional(pro);
+    System.out.println("\nProfesional almacenado con exito!\n");
   }
 
   private void almacenarAdministrativo() {
-    Administrativo administrativo = new Administrativo();
+    Administrativo admin = new Administrativo();
     System.out.println("Ingrese la informacion del nuevo Administrativo: ");
 
-    while (true) {
-      String nombre = validarDato("Nombre");
-      try {
-        administrativo.setNombre(nombre);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
+    validar(admin::setNombre, "Nombre");
+    validar(admin::setFechaNacimiento, "Fecha Nacimiento (DD/MM/AAAA)");
+    validar(admin::setRun, "RUN");
+    validar(admin::setArea, "Area");
+    validar(admin::setExpPrevia, "Experiencia previa");
 
-    while (true) {
-      String fechaNacimiento = validarDato("Fecha Nacimiento (DD/MM/AAAA)");
-      try {
-        administrativo.setFechaNacimiento(fechaNacimiento);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String run = validarDato("RUN");
-      try {
-        administrativo.setRun(Integer.parseInt(run));
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Debe Ingresar un numero");
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String area = validarDato("Area");
-      try {
-        administrativo.setArea(area);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String expPrevia = validarDato("Experiencia Previa");
-      try {
-        administrativo.setExpPrevia(expPrevia);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    this.contenedor.almacenarAdministrativo(administrativo);
+    this.contenedor.almacenarAdministrativo(admin);
+    System.out.println("\nAdministrativo almacenado con exito!\n");
   }
 
   private void almacenarCapacitacion() {
-    Capacitacion capacitacion = new Capacitacion();
+    Capacitacion capa = new Capacitacion();
     System.out.println("Ingrese la informacion para una nueva capacitacion: ");
 
-    while (true) {
-      String id = validarDato("Identificador");
-      try {
-        capacitacion.setId(Integer.parseInt(id));
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Debe Ingresar un numero");
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
+    validar(capa::setId, "Identificador");
+    validar(capa::setRutCliente, "RUT Cliente");
+    validar(capa::setDia, "Dia");
+    validar(capa::setHora, "Hora (HH:MM)");
+    validar(capa::setLugar, "Lugar");
+    validar(capa::setDuracion, "Duracion (min)");
+    validar(capa::setCantidadAsistentes, "Cantidad Asistentes");
 
-    while (true) {
-      String rutCliente = validarDato("Rut Cliente");
-      try {
-        capacitacion.setRutCliente(rutCliente);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-    while (true) {
-      String dia = validarDato("Dia");
-      try {
-        capacitacion.setDia(dia);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String hora = validarDato("Hora");
-      try {
-        capacitacion.setHora(hora);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-    while (true) {
-      String lugar = validarDato("Lugar");
-      try {
-        capacitacion.setLugar(lugar);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-    while (true) {
-      String duracion = validarDato("Duracion");
-      try {
-        capacitacion.setDuracion(duracion);
-        break;
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-
-    while (true) {
-      String cantidadAsistentes = validarDato("Cantidad de Asistentes");
-      try {
-        capacitacion.setCantidadAsistentes(Integer.parseInt(cantidadAsistentes));
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Debe Ingresar un numero");
-      } catch (IllegalArgumentException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-    this.contenedor.almacenarCapacitacion(capacitacion);
+    this.contenedor.almacenarCapacitacion(capa);
+    System.out.println("\nCapacitacion almacenada con exito!\n");
   }
 
-  private String validarDato(String aValidar) {
+  private void validar(SetOperation operation, String prompt) {
+    while (true) {
+      String data = validarNoVacio(prompt);
+      try {
+        operation.apply(data);
+        break;
+      } catch (NumberFormatException e) {
+        System.out.println(" < Debe ingresar un numero > ");
+      } catch (IllegalArgumentException e) {
+        System.out.println(" < " + e.getMessage() + " > ");
+      }
+    }
+  }
+
+  private String validarNoVacio(String aValidar) {
     String dato;
     while (true) {
       System.out.print(aValidar + ": ");
@@ -420,9 +204,7 @@ public class TextUI {
       if (!dato.isEmpty()) {
         return dato;
       }
-      System.out.println("Este campo es obligatorio");
+      System.out.println(" < Este campo es obligatorio > ");
     }
   }
-
-
 }
