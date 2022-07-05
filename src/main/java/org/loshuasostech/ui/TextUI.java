@@ -12,8 +12,8 @@ import java.util.Scanner;
  * @since 01-07-2022
  */
 public class TextUI {
-  private Scanner scanner;
-  private Contenedor contenedor;
+  private final Scanner scanner;
+  private final Contenedor contenedor;
 
   public TextUI(Scanner scanner, Contenedor contenedor) {
     this.scanner = scanner;
