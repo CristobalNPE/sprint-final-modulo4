@@ -15,11 +15,11 @@ tipos de usuario y capacitaciones.
 
 ## Solución
 
-Para este fin se implemento una aplicación de interfaz de texto
+Para este fin se implementó una aplicación de interfaz de texto
 capaz de cumplir con los requisitos antes mencionados de la
 siguiente manera:
 
-- Se definen diversas clases 'modelo' representando a cada
+- Se definen diversas clases 'modelo' con sus propiedades representando a cada
   entidad que conforma el programa: Usuario, Cliente, Profesional,
   Administrativo, Capacitacion, Visitas en terreno y Revisión.
 - También se definio una interfaz 'Asesoria' con el fin de
