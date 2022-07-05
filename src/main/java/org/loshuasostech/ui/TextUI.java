@@ -91,9 +91,10 @@ public class TextUI {
    */
   private void listarCapacitaciones() {
     for (Capacitacion c : this.contenedor.obtenerCapacitaciones()) {
-      System.out.println("===========================");
+      System.out.println("==============================");
       System.out.println("ID Capacitacion : " + c.getId());
-      System.out.println("===========================");
+      c.mostrarDetalle();
+      System.out.println("\n==============================");
       System.out.println("+++ Clientes: +++ ");
       for (Usuario u : this.contenedor.obtenerUsuarios()) {
         if (u.getRun() == Integer.parseInt(c.getRutCliente())) {

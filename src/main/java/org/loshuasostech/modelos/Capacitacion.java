@@ -163,7 +163,7 @@ public class Capacitacion {
 
   public void mostrarDetalle() {
     System.out.printf
-            ("%nLa capacitacion sera en %s a las %s del dia %s, y durara %s minutos",
+            ("La capacitacion sera en %s %na las %s del dia %s, y durara %s minutos",
                     this.lugar, this.hora, this.dia, this.duracion);
   }
 }
