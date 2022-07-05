@@ -2,10 +2,7 @@ package org.loshuasostech.ui;
 
 import org.loshuasostech.helpers.SetOperation;
 import org.loshuasostech.logic.Contenedor;
-import org.loshuasostech.modelos.Administrativo;
-import org.loshuasostech.modelos.Capacitacion;
-import org.loshuasostech.modelos.Cliente;
-import org.loshuasostech.modelos.Profesional;
+import org.loshuasostech.modelos.*;
 
 import java.util.Scanner;
 
@@ -76,7 +73,18 @@ public class TextUI {
   }
 
   private void listarCapacitaciones() {
-    this.contenedor.listarCapacitaciones();
+    for (Capacitacion c : this.contenedor.obtenerCapacitaciones()) {
+      System.out.println("===========================");
+      System.out.println("ID Capacitacion : " + c.getId());
+      System.out.println("===========================");
+      System.out.println("+++ Clientes: +++ ");
+      for (Usuario u : this.contenedor.obtenerUsuarios()) {
+        if (u.getRun() == Integer.parseInt(c.getRutCliente())) {
+          System.out.println(u);
+          System.out.println("--------------------");
+        }
+      }
+    }
   }
 
   private void listarPorTipo() {
@@ -115,7 +123,14 @@ public class TextUI {
   }
 
   private void listarUsuarios() {
-    this.contenedor.listarUsuarios();
+    for (Usuario usuario : this.contenedor.obtenerUsuarios()) {
+      System.out.println("---------------------------");
+      System.out.println("Nombre          : " + usuario.getNombre());
+      System.out.println("RUT             : " + usuario.getRun());
+      System.out.println("Fecha nacimiento: " + usuario.getFechaNacimiento());
+    }
+    System.out.println("---------------------------");
+    System.out.println();
   }
 
   private void almacenarCliente() {

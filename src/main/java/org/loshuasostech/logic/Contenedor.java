@@ -78,19 +78,13 @@ public class Contenedor {
   }
 
   /**
-   * Muestra por pantalla la informacion basica de los usuarios en contenedor.
+   * Obtiene una lista de todos los Usuarios, casteados a tipo Usuario
+   *
+   * @return una Lista con todos los Usuarios ingresados
    */
-  public void listarUsuarios() {
-
-    for (Asesoria usuario : this.usuarios) {
-      Usuario u = (Usuario) usuario;
-      System.out.println("---------------------------");
-      System.out.println("Nombre          : " + u.getNombre());
-      System.out.println("RUT             : " + u.getRun());
-      System.out.println("Fecha nacimiento: " + u.getFechaNacimiento());
-    }
-    System.out.println("---------------------------");
-    System.out.println();
+  @SuppressWarnings("unchecked")
+  public List<Usuario> obtenerUsuarios() {
+    return (List<Usuario>) (Object) this.usuarios;
   }
 
   /**
@@ -130,21 +124,10 @@ public class Contenedor {
   }
 
   /**
-   * Muestra por pantalla las capacitaciones en el contenedor y sus clientes.
+   * Devuelve una lista con las capacitaciones almacenadas
+   * @return Lista con de objectos Capacitacion
    */
-  public void listarCapacitaciones() {
-    for (Capacitacion c : this.capacitaciones) {
-      System.out.println("===========================");
-      System.out.println("ID Capacitacion : " + c.getId());
-      System.out.println("===========================");
-      System.out.println("+++ Clientes: +++ ");
-      for (Asesoria usuario : this.usuarios) {
-        Usuario u = (Usuario) usuario;
-        if (u.getRun() == Integer.parseInt(c.getRutCliente())) {
-          System.out.println(u);
-          System.out.println("--------------------");
-        }
-      }
-    }
+  public List<Capacitacion> obtenerCapacitaciones(){
+    return this.capacitaciones;
   }
 }
