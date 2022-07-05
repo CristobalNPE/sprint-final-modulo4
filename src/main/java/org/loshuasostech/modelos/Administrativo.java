@@ -68,8 +68,9 @@ public class Administrativo extends Usuario {
   }
 
   public void analizarUsuario() {
+    System.out.println("______________________________________");
     super.analizarUsuario();
-    System.out.println("\nArea :" + this.area);
-    System.out.println("\nExperiencia Previa :" + this.expPrevia);
+    System.out.println("Area :" + this.area);
+    System.out.println("Experiencia Previa :" + this.expPrevia);
   }
 }

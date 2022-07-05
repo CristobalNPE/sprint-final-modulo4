@@ -198,6 +198,7 @@ public class Cliente extends Usuario {
   }
 
   public void analizarUsuario() {
+    System.out.println("______________________________________");
     super.analizarUsuario();
     System.out.println
             ("Direccion: " + this.direccion + "\nComuna: " + this.comuna);

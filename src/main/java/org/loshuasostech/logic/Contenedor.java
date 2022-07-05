@@ -88,46 +88,49 @@ public class Contenedor {
   }
 
   /**
-   * Muestra por pantalla los usuarios que pertenezcan a un tipo especifico
+   * Obtiene los usuarios referentes al tipo indicado
    *
-   * @param tipo Indica el tipo de usuario que se desea consultar.
+   * @param tipo Cadena que indica el tipo de usuario a obtener
+   * @return una lista con todos los usuarios del tipo indicado en el contenedor
    */
-  public void listarUsuariosPorTipo(String tipo) {
-
+  public List<Usuario> obtenerUsuariosPorTipo(String tipo) {
+    List<Usuario> unTipoDeUsuarios = new ArrayList<>();
     if (tipo.equalsIgnoreCase("cliente")) {
       for (Asesoria u : this.usuarios) {
+        // Checkear si es Cliente antes de agregar.
         if (u instanceof Cliente) {
-          System.out.println("---------------------------");
-          System.out.println(u);
+          Usuario toAdd = (Usuario) u;
+          unTipoDeUsuarios.add(toAdd);
         }
       }
-      System.out.println("---------------------------");
     }
     if (tipo.equalsIgnoreCase("administrativo")) {
       for (Asesoria u : this.usuarios) {
+        // Checkear si es Administrativo antes de agregar.
         if (u instanceof Administrativo) {
-          System.out.println("---------------------------");
-          System.out.println(u);
+          Usuario toAdd = (Usuario) u;
+          unTipoDeUsuarios.add(toAdd);
         }
       }
-      System.out.println("---------------------------");
     }
     if (tipo.equalsIgnoreCase("profesional")) {
       for (Asesoria u : this.usuarios) {
+        // Checkear si es Profesional antes de agregar.
         if (u instanceof Profesional) {
-          System.out.println("---------------------------");
-          System.out.println(u);
+          Usuario toAdd = (Usuario) u;
+          unTipoDeUsuarios.add(toAdd);
         }
       }
-      System.out.println("---------------------------");
     }
+    return unTipoDeUsuarios;
   }
 
   /**
    * Devuelve una lista con las capacitaciones almacenadas
+   *
    * @return Lista con de objectos Capacitacion
    */
-  public List<Capacitacion> obtenerCapacitaciones(){
+  public List<Capacitacion> obtenerCapacitaciones() {
     return this.capacitaciones;
   }
 }

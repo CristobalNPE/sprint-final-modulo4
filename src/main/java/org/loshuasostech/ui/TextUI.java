@@ -118,14 +118,21 @@ public class TextUI {
     String input = scanner.nextLine();
 
     if (input.equals("1")) {
-      this.contenedor.listarUsuariosPorTipo("cliente");
+      System.out.println("--- Cliente(s) encontrado(s): ----");
+      this.contenedor.obtenerUsuariosPorTipo("cliente")
+              .forEach(Usuario::analizarUsuario);
     } else if (input.equals("2")) {
-      this.contenedor.listarUsuariosPorTipo("profesional");
+      System.out.println("--- Profesional(es) encontrado(s): ----");
+      this.contenedor.obtenerUsuariosPorTipo("Profesional")
+              .forEach(Usuario::analizarUsuario);
     } else if (input.equals("3")) {
-      this.contenedor.listarUsuariosPorTipo("administrativo");
+      System.out.println("--- Administrativo(s) encontrado(s): ----");
+      this.contenedor.obtenerUsuariosPorTipo("Administrativo")
+              .forEach(Usuario::analizarUsuario);
     } else {
       System.out.println("Opcion no valida");
     }
+    System.out.println();
   }
 
   /**
