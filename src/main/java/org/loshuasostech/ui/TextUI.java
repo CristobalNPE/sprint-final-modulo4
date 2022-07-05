@@ -90,18 +90,23 @@ public class TextUI {
    * Muestra por pantalla las capacitaciones almacenadas segun formato.
    */
   private void listarCapacitaciones() {
-    for (Capacitacion c : this.contenedor.obtenerCapacitaciones()) {
-      System.out.println("==============================");
-      System.out.println("ID Capacitacion : " + c.getId());
-      c.mostrarDetalle();
-      System.out.println("\n==============================");
-      System.out.println("+++ Clientes: +++ ");
-      for (Usuario u : this.contenedor.obtenerUsuarios()) {
-        if (u.getRun() == Integer.parseInt(c.getRutCliente())) {
-          System.out.println(u);
-          System.out.println("--------------------");
+    if (!this.contenedor.contenedorCapacitacionesVacio()) {
+      for (Capacitacion c : this.contenedor.obtenerCapacitaciones()) {
+        System.out.println("==============================");
+        System.out.println("ID Capacitacion : " + c.getId());
+        c.mostrarDetalle();
+        System.out.println("\n==============================");
+        System.out.println(" +++ Clientes: +++ ");
+        System.out.println("--------------------");
+        for (Usuario u : this.contenedor.obtenerUsuarios()) {
+          if (u.getRun() == Integer.parseInt(c.getRutCliente())) {
+            System.out.println(u);
+            System.out.println("--------------------");
+          }
         }
       }
+    } else {
+      System.out.println("\n < No existen registros de capacitaciones > \n");
     }
   }
 
@@ -110,29 +115,33 @@ public class TextUI {
    * los datos obtenidos para todos los usuarios que pertenezcan a este tipo.
    */
   private void listarPorTipo() {
-    System.out.println("Que tipo de Usuario desea listar:");
-    System.out.println(" 1) Cliente");
-    System.out.println(" 2) Profesional");
-    System.out.println(" 3) Administrativo");
+    if (!this.contenedor.contenedorUsuariosVacio()) {
+      System.out.println("Que tipo de Usuario desea listar:");
+      System.out.println(" 1) Cliente");
+      System.out.println(" 2) Profesional");
+      System.out.println(" 3) Administrativo");
 
-    String input = scanner.nextLine();
+      String input = scanner.nextLine();
 
-    if (input.equals("1")) {
-      System.out.println("--- Cliente(s) encontrado(s): ----");
-      this.contenedor.obtenerUsuariosPorTipo("cliente")
-              .forEach(Usuario::analizarUsuario);
-    } else if (input.equals("2")) {
-      System.out.println("--- Profesional(es) encontrado(s): ----");
-      this.contenedor.obtenerUsuariosPorTipo("Profesional")
-              .forEach(Usuario::analizarUsuario);
-    } else if (input.equals("3")) {
-      System.out.println("--- Administrativo(s) encontrado(s): ----");
-      this.contenedor.obtenerUsuariosPorTipo("Administrativo")
-              .forEach(Usuario::analizarUsuario);
+      if (input.equals("1")) {
+        System.out.println("--- Cliente(s) encontrado(s): ----");
+        this.contenedor.obtenerUsuariosPorTipo("cliente")
+                .forEach(Usuario::analizarUsuario);
+      } else if (input.equals("2")) {
+        System.out.println("--- Profesional(es) encontrado(s): ----");
+        this.contenedor.obtenerUsuariosPorTipo("Profesional")
+                .forEach(Usuario::analizarUsuario);
+      } else if (input.equals("3")) {
+        System.out.println("--- Administrativo(s) encontrado(s): ----");
+        this.contenedor.obtenerUsuariosPorTipo("Administrativo")
+                .forEach(Usuario::analizarUsuario);
+      } else {
+        System.out.println("Opcion no valida");
+      }
+      System.out.println();
     } else {
-      System.out.println("Opcion no valida");
+      System.out.println("\n < Primero debe ingresar usuarios al registro > \n");
     }
-    System.out.println();
   }
 
   /**
@@ -140,18 +149,22 @@ public class TextUI {
    * posible, mostrando un mensaje de exito.
    */
   private void eliminarUsuario() {
-    while (true) {
-      String rutAEliminar = validarNoVacio("Indique el RUT");
-      try {
-        boolean borrado =
-                this.contenedor.eliminarUsuario(Integer.parseInt(rutAEliminar));
-        if (borrado) {
-          System.out.println("\nUsuario eliminado exitosamente!\n");
+    if (!this.contenedor.contenedorUsuariosVacio()) {
+      while (true) {
+        String rutAEliminar = validarNoVacio("Indique el RUT");
+        try {
+          boolean borrado =
+                  this.contenedor.eliminarUsuario(Integer.parseInt(rutAEliminar));
+          if (borrado) {
+            System.out.println("\nUsuario eliminado exitosamente!\n");
+          }
+          break;
+        } catch (NumberFormatException e) {
+          System.out.println("Debe Ingresar un numero");
         }
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Debe Ingresar un numero");
       }
+    } else {
+      System.out.println("\n < No existen registros de usuarios > \n");
     }
   }
 
@@ -160,15 +173,19 @@ public class TextUI {
    * ingresados, obtenidos desde el contenedor.
    */
   private void listarUsuarios() {
-    System.out.println("--- Usuarios actualmente registrados ---");
-    for (Usuario usuario : this.contenedor.obtenerUsuarios()) {
+    if (!this.contenedor.contenedorUsuariosVacio()) {
+      System.out.println("--- Usuarios actualmente registrados ---");
+      for (Usuario usuario : this.contenedor.obtenerUsuarios()) {
+        System.out.println("---------------------------");
+        System.out.println("Nombre          : " + usuario.getNombre());
+        System.out.println("RUT             : " + usuario.getRun());
+        System.out.println("Fecha nacimiento: " + usuario.getFechaNacimiento());
+      }
       System.out.println("---------------------------");
-      System.out.println("Nombre          : " + usuario.getNombre());
-      System.out.println("RUT             : " + usuario.getRun());
-      System.out.println("Fecha nacimiento: " + usuario.getFechaNacimiento());
+      System.out.println();
+    } else {
+      System.out.println("\n < Primero debe ingresar usuarios al registro > \n");
     }
-    System.out.println("---------------------------");
-    System.out.println();
   }
 
   /**

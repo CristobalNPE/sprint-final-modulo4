@@ -133,4 +133,20 @@ public class Contenedor {
   public List<Capacitacion> obtenerCapacitaciones() {
     return this.capacitaciones;
   }
+
+  /**
+   *
+   * @return TRUE si contenedor de Usuarios se encuentra vacio.
+   */
+  public boolean contenedorUsuariosVacio(){
+    return this.usuarios.isEmpty();
+  }
+
+  /**
+   *
+   * @return TRUE si contenedor de Capacitaciones se encuentra vacio.
+   */
+  public boolean contenedorCapacitacionesVacio(){
+    return this.capacitaciones.isEmpty();
+  }
 }
