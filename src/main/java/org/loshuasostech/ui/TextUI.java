@@ -6,6 +6,11 @@ import org.loshuasostech.modelos.*;
 
 import java.util.Scanner;
 
+/**
+ * @author Los Huasos TECH
+ * @version 0.1
+ * @since 01-07-2022
+ */
 public class TextUI {
   private Scanner scanner;
   private Contenedor contenedor;
@@ -16,7 +21,9 @@ public class TextUI {
   }
 
   /**
-   * Inicia el programa y despliega el menu principal
+   * Inicia el programa y despliega el menu principal, solicita por teclado al
+   * usuario que escoja una opcion, y verifica que se encuentre en el rango
+   * correcto antes de procesarla.
    */
   public void start() {
     while (true) {
@@ -45,6 +52,13 @@ public class TextUI {
     }
   }
 
+  /**
+   * Procesa el input ingreasdo por el usuario desde el Menu principal y realiza
+   * accion acorde.
+   *
+   * @param input corresponde una Cadena que contiene un numero del 1-8,
+   *              verificado previamente.
+   */
   private void procesarInput(String input) {
     if (input.equals("1")) {
       almacenarCliente();
@@ -72,6 +86,9 @@ public class TextUI {
     }
   }
 
+  /**
+   * Muestra por pantalla las capacitaciones almacenadas segun formato.
+   */
   private void listarCapacitaciones() {
     for (Capacitacion c : this.contenedor.obtenerCapacitaciones()) {
       System.out.println("===========================");
@@ -87,6 +104,10 @@ public class TextUI {
     }
   }
 
+  /**
+   * Solicita al usuario que indique un tipo de usuario y muestra por pantalla
+   * los datos obtenidos para todos los usuarios que pertenezcan a este tipo.
+   */
   private void listarPorTipo() {
     System.out.println("Que tipo de Usuario desea listar:");
     System.out.println(" 1) Cliente");
@@ -106,6 +127,10 @@ public class TextUI {
     }
   }
 
+  /**
+   * Solicita por teclado el rut de un usuario y lo elimina del contenedor de ser
+   * posible, mostrando un mensaje de exito.
+   */
   private void eliminarUsuario() {
     while (true) {
       String rutAEliminar = validarNoVacio("Indique el RUT");
@@ -122,7 +147,12 @@ public class TextUI {
     }
   }
 
+  /**
+   * Muestra por pantalla la informacion basica de todos los usuarios
+   * ingresados, obtenidos desde el contenedor.
+   */
   private void listarUsuarios() {
+    System.out.println("--- Usuarios actualmente registrados ---");
     for (Usuario usuario : this.contenedor.obtenerUsuarios()) {
       System.out.println("---------------------------");
       System.out.println("Nombre          : " + usuario.getNombre());
@@ -133,6 +163,10 @@ public class TextUI {
     System.out.println();
   }
 
+  /**
+   * Solicita la informacion necesaria para almacenar un nuevo Cliente,
+   * la valida y asigna mediante el metodo validar().
+   */
   private void almacenarCliente() {
     Cliente cliente = new Cliente();
     System.out.println("Ingrese la informacion del nuevo cliente: ");
@@ -153,6 +187,10 @@ public class TextUI {
 
   }
 
+  /**
+   * Solicita la informacion necesaria para almacenar un nuevo Profesional,
+   * la valida y asigna mediante el metodo validar().
+   */
   private void almacenarProfesional() {
     Profesional pro = new Profesional();
     System.out.println("Ingrese la informacion del nuevo Profesional: ");
@@ -167,6 +205,10 @@ public class TextUI {
     System.out.println("\nProfesional almacenado con exito!\n");
   }
 
+  /**
+   * Solicita la informacion necesaria para almacenar un nuevo Administrativo,
+   * la valida y asigna mediante el metodo validar().
+   */
   private void almacenarAdministrativo() {
     Administrativo admin = new Administrativo();
     System.out.println("Ingrese la informacion del nuevo Administrativo: ");
@@ -181,6 +223,10 @@ public class TextUI {
     System.out.println("\nAdministrativo almacenado con exito!\n");
   }
 
+  /**
+   * Solicita la informacion necesaria para almacenar una nueva capacitacion,
+   * la valida y asigna mediante el metodo validar().
+   */
   private void almacenarCapacitacion() {
     Capacitacion capa = new Capacitacion();
     System.out.println("Ingrese la informacion para una nueva capacitacion: ");
@@ -197,6 +243,14 @@ public class TextUI {
     System.out.println("\nCapacitacion almacenada con exito!\n");
   }
 
+  /**
+   * Realiza validaciones correspondientes al metodo recibido por medio de la
+   * interfaz funcional y se asegura que la informacion recibida cumpla con las
+   * condiciones impuestas en dicho metodo.
+   *
+   * @param operation corresponde al metodo setter a procesar.
+   * @param prompt    Cadena que representa la consulta realizada al usuario.
+   */
   private void validar(SetOperation operation, String prompt) {
     while (true) {
       String data = validarNoVacio(prompt);
@@ -211,6 +265,13 @@ public class TextUI {
     }
   }
 
+  /**
+   * Realiza una solicitud de informacion al usuario basada en la cadena recibida,
+   * se asegura de obtener un valor no vacio antes de devolverlo.
+   *
+   * @param aValidar Hace referencia a la consulta hacia el usuario.
+   * @return Una Cadena con la respuesta del usuario, que nunca sera vacia.
+   */
   private String validarNoVacio(String aValidar) {
     String dato;
     while (true) {
